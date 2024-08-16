@@ -1,0 +1,21 @@
+html,
+body {
+  background-color: #fbfaff;
+  margin: 0;
+  font-family: "Inter", sans-serif;
+  height: 100%;
+  width: 100%;
+}
+
+::-webkit-scrollbar {
+  border-radius: 4px;
+  background: #f4f4f4;
+  width: 4px;
+  height: 0px;
+  flex-shrink: 0;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 50px;
+  background: #cbcbcb;
+}
