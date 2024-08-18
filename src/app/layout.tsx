@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import Head from "next/head";
+import { Sidebar } from "@/ui/Sidebar/Sidebar";
 
 export const metadata: Metadata = {
-  title: "Onco 360",
-  description: "Onco 360"
+  title: "Hydraulic",
+  description: "Hydraulic"
 };
 
 export default async function RootLayout({
@@ -21,7 +22,10 @@ export default async function RootLayout({
         />
         <link rel="icon" href="/public/favicon.ico" />
       </Head>
-        <body>{children}</body>
+        <body>
+          <Sidebar />
+          {children}
+          </body>
     </html>
   );
 }
