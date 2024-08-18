@@ -1,5 +1,9 @@
+import { Grid } from "@mui/material"
+import styles from "./landing.module.scss"
+
 export const Landing = () => {
     return (
-        <>as dsadas d</>
+        <Grid className={styles.root}>
+        </Grid>
     )
 }

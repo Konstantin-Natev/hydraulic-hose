@@ -1,10 +1,16 @@
 html,
 body {
-  background-color: #fbfaff;
   margin: 0;
   font-family: "Inter", sans-serif;
   height: 100%;
   width: 100%;
+  background-color: var(--Deep-blue, #0A1E2D);
+  color: var(--White, #FFF);
+}
+
+body {
+  display: flex;
+  flex-direction: row;
 }
 
 ::-webkit-scrollbar {

@@ -1,0 +1,12 @@
+.rootContainer {
+    height: 100%;
+    width: 12%;
+    background-color: var(--Deep-blue, #0A1E2D);
+    display: flex;
+    flex-direction: column;
+
+    .divider {
+        margin: 0 12px 20px 12px;
+        background-color: aliceblue;
+    }
+}
