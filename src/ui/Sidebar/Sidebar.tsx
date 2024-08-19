@@ -6,17 +6,21 @@ import styles from "./sidebar.module.scss"
 export const Sidebar = () => {
     return (
       <Grid className={styles.rootContainer}>
-
         <Grid container>
           <Image src="/hydraulic-logo.svg" alt="Hydraulic logo" width={175} height={75}/>
         </Grid>
 
         <Divider className={styles.divider} />
 
-        <Grid>
-          <Link href={"/"}>Начало</Link>
+        <Grid className={styles.nav}>
+          <Link className={styles.navLink} href={"/"}>Начало</Link>
         </Grid>
-
+        <Grid className={styles.nav}>
+          <Link className={styles.navLink} href={"/"}>Маркучи</Link>
+        </Grid>
+        <Grid className={styles.nav}>
+          <Link className={styles.navLink} href={"/"}>Накрайници</Link>
+        </Grid>
       </Grid>
     )
 }
