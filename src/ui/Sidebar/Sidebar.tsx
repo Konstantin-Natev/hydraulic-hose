@@ -16,7 +16,7 @@ export const Sidebar = () => {
           <Link className={styles.navLink} href={"/"}>Начало</Link>
         </Grid>
         <Grid className={styles.nav}>
-          <Link className={styles.navLink} href={"/"}>Маркучи</Link>
+          <Link className={styles.navLink} href={"/hoses"}>Маркучи</Link>
         </Grid>
         <Grid className={styles.nav}>
           <Link className={styles.navLink} href={"/"}>Накрайници</Link>

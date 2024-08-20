@@ -1,0 +1,177 @@
+.rootFilled {
+  display: flex;
+  height: 3.125rem; /* 50px */
+  padding: 1rem 1.125rem; /* 16px 18px */
+  justify-content: center;
+  align-items: center;
+  gap: 1rem; /* 16px */
+  flex-shrink: 0;
+  border-radius: 10px;
+  background: #0068ff;
+  border: none;
+  width: fit-content;
+}
+
+.rootFilled:hover {
+  background: #0052cc;
+  cursor: pointer;
+}
+
+.rootFilled:disabled {
+  background: #d6d7db;
+  cursor: not-allowed;
+}
+
+.rootOutlined {
+  display: flex;
+  height: 3.125rem; /* 50px */
+  padding: 0.9375rem 0.9375rem; /* 15px 15px */
+  justify-content: center;
+  align-items: center;
+  gap: 0.9375rem; /* 15px 15px */
+  flex-shrink: 0;
+  border-radius: 10px;
+  border: 2px solid #0068ff;
+  background-color: transparent;
+  width: fit-content;
+}
+
+.rootOutlined:hover {
+  background: #eef3fa;
+  cursor: pointer;
+}
+
+.rootOutlined:disabled {
+  border: 2px solid #d6d7db;
+  color: #a6a8b2;
+  cursor: not-allowed;
+}
+
+.rootOutlinedDelete {
+  display: flex;
+  height: 3.125rem; /* 50px */
+  padding: 0.9375rem 0.9375rem; /* 15px 15px */
+  justify-content: center;
+  align-items: center;
+  gap: 0.9375rem; /* 15px */
+  flex-shrink: 0;
+  border-radius: 10px;
+  border: 2px solid #fd3131;
+  background-color: transparent;
+  width: fit-content;
+}
+
+.rootOutlinedDelete:hover {
+  background: #eef3fa;
+  cursor: pointer;
+}
+
+.rootOutlinedDelete:disabled {
+  border: 2px solid #d6d7db;
+  color: #a6a8b2;
+  cursor: not-allowed;
+}
+
+.textFilled {
+  color: #fff;
+  font-size: 1rem; /* 16px */
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.textOutlined {
+  color: #0068ff;
+  font-size: 1rem; /* 16px */
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.textOutlinedDelete {
+  color: #fd3131;
+  font-size: 1rem; /* 16px */
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.root {
+  display: flex;
+  height: 3.125rem; /* 50px */
+  padding: 15px 17px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  gap: 15px;
+  flex-shrink: 0;
+  border: none;
+  width: fit-content;
+  background-color: transparent;
+}
+
+.root:hover {
+  cursor: pointer;
+  background: #eef3fa;
+}
+
+.root:disabled {
+  cursor: not-allowed;
+  background: #ffffff;
+}
+
+.text {
+  color: #76777e;
+  font-size: 1rem; /* 16px */
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.text:disabled {
+  color: #a6a8b2;
+}
+
+@media only screen and (max-width: 1400px) {
+  .root {
+    height: 2.46rem; /* 39.36px */
+    border-radius: 8px;
+  }
+
+  .textFilled {
+    font-size: 0.875rem; /* 14px */
+  }
+
+  .textOutlined {
+    font-size: 0.875rem; /* 14px */
+  }
+
+  .textOutlinedDelete {
+    font-size: 0.875rem; /* 14px */
+  }
+
+  .rootFilled {
+    height: 2.46rem; /* 39.36px */
+    padding: 0px 10px;
+    gap: 0.5rem; /* 8px */
+    border-radius: 8px;
+  }
+
+  .rootOutlined {
+    display: flex;
+    height: 2.46rem; /* 39.36px */
+    padding: 0rem 0.625rem; /* 0px 10px */
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem; /* 8px */
+    flex-shrink: 0;
+    border-radius: 8px;
+    border: 2px solid #0068ff;
+    background-color: transparent;
+    width: fit-content;
+  }
+
+  .rootOutlinedDelete {
+    height: 2.46rem; /* 39.36px */
+  }
+}
