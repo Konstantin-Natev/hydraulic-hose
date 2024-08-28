@@ -19,7 +19,7 @@ export const Sidebar = () => {
           <Link className={styles.navLink} href={"/hoses"}>Маркучи</Link>
         </Grid>
         <Grid className={styles.nav}>
-          <Link className={styles.navLink} href={"/"}>Накрайници</Link>
+          <Link className={styles.navLink} href={"/hose-fittings"}>Накрайници</Link>
         </Grid>
       </Grid>
     )

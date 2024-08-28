@@ -1,15 +1,15 @@
 "use client"
 import { Autocomplete, Box, Divider, Grid, Stack, Table, TableBody, TableCell, TableHead, TableRow, TextField, Typography } from "@mui/material"
-import styles from "./hoses.module.scss";
+import styles from "./hose-fittings.module.scss";
 import Image from "next/image";
 import { ChangeEvent, useState } from "react";
-import { defaultFilters } from "@/interfaces/hoses/hoses";
+import { defaultFilters } from "@/interfaces/hose-fittings/hose-fittings";
 import searchOutline from "../../../public/searchOutline.svg";
 import cross from "../../../public/cross.svg";
 import { useRouter } from "next/navigation";
 import { CustomButton } from "../CustomButton/CustomButton";
 
-export const Hoses = () => {
+export const HoseFittings = () => {
     const [filters, setFilters] = useState({ ...defaultFilters });
     const router = useRouter();
 
@@ -21,9 +21,9 @@ export const Hoses = () => {
     return (
         <Stack className={styles.rootContainer}>
             <Grid>
-                <Typography className={styles.pageTitle}>Маркучи</Typography>
+                <Typography className={styles.pageTitle}>Накрайници</Typography>
                 <Typography className={styles.pageSubtitle}>
-                    Списък с маркучите въведени в системата и техния статус
+                    Списък с накрайници въведени в системата и техните размери
                 </Typography>
             </Grid>
             <Divider className={styles.divider} />
@@ -32,7 +32,7 @@ export const Hoses = () => {
                     <Stack className={styles.filters}>
                         <TextField
                             id="outlined-search"
-                            placeholder={"Търсете по наимонование на маркуч"}
+                            placeholder={"Търсете по наимонование на накрайници"}
                             type="search"
                             className={styles.searchField}
                             InputProps={{
@@ -40,8 +40,8 @@ export const Hoses = () => {
                                 startAdornment: <Image src={searchOutline} alt={"search outlined"} />
                             }}
                             InputLabelProps={{ className: styles.customInputLabel }}
-                            onChange={(e: ChangeEvent<HTMLInputElement>) => setFilters({ ...filters, hose_name: e.target.value})}
-                            value={filters.hose_name}
+                            onChange={(e: ChangeEvent<HTMLInputElement>) => setFilters({ ...filters, hose_fittings_name: e.target.value})}
+                            value={filters.hose_fittings_name}
                         />
                         <Autocomplete
                             disablePortal
@@ -67,7 +67,7 @@ export const Hoses = () => {
                     </Stack>
                 </Stack>
                 <Stack className={styles.filterButtonsInner}>
-                    {(filters.hose_name !== "" ||
+                    {(filters.hose_fittings_name !== "" ||
                     filters.status !== "" ||
                     filters.count !== "" 
                         ) && (
