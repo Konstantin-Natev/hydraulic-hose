@@ -1,6 +1,9 @@
+"use server"
 import { Hoses } from "@/ui/Hoses/Hoses";
+import { ass } from "./action";
 
-const HosesPage = () => {
+const HosesPage = async () => {
+  await ass();
   return (
     <Hoses />
   );

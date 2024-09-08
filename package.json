@@ -12,17 +12,20 @@
     "@emotion/react": "^11.13.0",
     "@emotion/styled": "^11.13.0",
     "@mui/material": "^5.16.7",
+    "@prisma/client": "^5.19.1",
     "next": "14.2.5",
     "react": "^18",
     "react-dom": "^18",
     "sass": "^1.77.8"
   },
   "devDependencies": {
-    "@types/node": "^20",
+    "@types/node": "^20.16.3",
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "eslint": "^8",
     "eslint-config-next": "14.2.5",
-    "typescript": "^5"
+    "prisma": "^5.19.1",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.5.4"
   }
 }
