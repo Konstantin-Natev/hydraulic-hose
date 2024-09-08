@@ -1,6 +1,6 @@
 import React from "react";
 import Image from "next/image";
-import styles from "./custom-button.module.css";
+import styles from "./custom-button.module.scss";
 import Typography from "@mui/material/Typography";
 
 const variants = {
