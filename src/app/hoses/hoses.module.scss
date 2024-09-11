@@ -3,15 +3,22 @@
     height: 92vh;
     width: 100%;
 
-    .pageTitle {
-        color: #ffffff;
-        font-size: 2rem; /* 32px */
-        font-style: normal;
-        font-weight: 600;
-        line-height: normal;
-        margin-bottom: 1rem; /* 16px */
-        font-family: "Inter", sans-serif;
+    .titleSection {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+
+        .pageTitle {
+            color: #ffffff;
+            font-size: 2rem; /* 32px */
+            font-style: normal;
+            font-weight: 600;
+            line-height: normal;
+            margin-bottom: 1rem; /* 16px */
+            font-family: "Inter", sans-serif;
+        }
     }
+
 
     .pageSubtitle {
         color: #ffffff;

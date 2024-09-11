@@ -1,13 +1,23 @@
-import { PrismaClient } from "@prisma/client";
+"use server";
+import { IHoseDetails } from "@/interfaces/hoses/hoses";
+import { prisma } from "@/lib/prisma";
+import { revalidatePath } from "next/cache";
 
-const prisma = new PrismaClient();
-
-export const ass = async () => {
+export async function addHoseRecord (hoseDetails: IHoseDetails) {
   try {
-    await prisma.user.create({ data: { name: "Kosio"} })
+    const newHose = await prisma.hose.create({ 
+      data: { 
+        model: hoseDetails.model,
+        hose_size: hoseDetails.hose_size,
+        DN_diameter: Number(hoseDetails.DN_diameter),
+        initial_price: Number(hoseDetails.initial_price),
+        market_price: Number(hoseDetails.market_price),
+        working_pressure: Number(hoseDetails.working_pressure),
+      } 
+    });
+
+    revalidatePath("/hoses");
   } catch (err) {
-    console.error("error executing query:", err);
-  } finally {
-    prisma.$disconnect();
+    console.error("Error executing addHoseRecord:", err);
   }
 };

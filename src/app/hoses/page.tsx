@@ -1,11 +1,13 @@
-"use server"
-import { Hoses } from "@/ui/Hoses/Hoses";
-import { ass } from "./action";
+"use server";
+import { Hoses } from "@/app/hoses/Hoses";
+import { getAllHoses } from "./data";
+import { IHoseDetails } from "@/interfaces/hoses/hoses";
 
 const HosesPage = async () => {
-  await ass();
+  const hoses = await getAllHoses();
+
   return (
-    <Hoses />
+    <Hoses hoses={hoses as IHoseDetails[]}/>
   );
 };
 

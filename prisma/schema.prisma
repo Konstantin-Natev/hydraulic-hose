@@ -7,7 +7,12 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model User {
-  id     BigInt        @id @default(autoincrement())
-  name   String
+model Hose {
+  id                 BigInt        @id @default(autoincrement())
+  model              String
+  hose_size          String
+  DN_diameter        Int
+  initial_price      Int
+  market_price       Int
+  working_pressure   Int
 }

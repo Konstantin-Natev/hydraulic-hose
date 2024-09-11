@@ -1,16 +1,25 @@
-"use client"
+"use client";
 import { Autocomplete, Box, Divider, Grid, Stack, Table, TableBody, TableCell, TableHead, TableRow, TextField, Typography } from "@mui/material"
 import styles from "./hoses.module.scss";
 import Image from "next/image";
 import { ChangeEvent, useState } from "react";
-import { defaultFilters } from "@/interfaces/hoses/hoses";
+import { defaultFilters, IHoseDetails } from "@/interfaces/hoses/hoses";
 import searchOutline from "../../../public/searchOutline.svg";
 import cross from "../../../public/cross.svg";
+import plus from "../../../public/plus.svg";
 import { useRouter } from "next/navigation";
-import { CustomButton } from "../CustomButton/CustomButton";
+import { CustomButton } from "../../ui/CustomButton/CustomButton";
+import { AddHoseModal } from "./AddHoseModal";
+import { HosesTableRow } from "./HosesTableRow";
 
-export const Hoses = () => {
+interface HosesProps {
+    hoses: IHoseDetails[]
+}
+
+export const Hoses = ({ hoses } : HosesProps) => {
     const [filters, setFilters] = useState({ ...defaultFilters });
+    const [isOpen, setIsOpen] = useState<boolean>(false);
+
     const router = useRouter();
 
     const handleClearFilters = () => {
@@ -18,14 +27,28 @@ export const Hoses = () => {
         router.push("?");
     };
 
+    const openAddHoseModal = () => {
+        setIsOpen(true);
+    };
+
+    const closeAddHoseModal = () => {
+        setIsOpen(false);
+    };
+
     return (
         <Stack className={styles.rootContainer}>
-            <Grid>
+            <Grid className={styles.titleSection}>
                 <Typography className={styles.pageTitle}>Маркучи</Typography>
-                <Typography className={styles.pageSubtitle}>
-                    Списък с маркучите въведени в системата и техния статус
-                </Typography>
+                <CustomButton
+                    text={"Добави маркуч"}
+                    variant={"filled"}
+                    icon={plus}
+                    onClick={openAddHoseModal}
+                />
             </Grid>
+            <Typography className={styles.pageSubtitle}>
+                Списък с маркучите въведени в системата и техния статус
+            </Typography>
             <Divider className={styles.divider} />
             <Stack className={styles.filtersSection}>
                 <Stack>
@@ -85,19 +108,28 @@ export const Hoses = () => {
                 <Table>
                     <TableHead>
                         <TableRow className={styles.tableHeader}>
-                            <TableCell>ID</TableCell>
-                            <TableCell>Бройки</TableCell>
-                            <TableCell>Последна поръчка</TableCell>
+                            <TableCell>Модел</TableCell>
+                            <TableCell>Размер</TableCell>
+                            <TableCell>Вътрешен диаметър DN</TableCell>
+                            <TableCell>Работно налягане</TableCell>
+                            <TableCell>Идваща цена</TableCell>
+                            <TableCell>Продаваша цена</TableCell>
                             <TableCell />
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        {/* {vouchers?.map((voucher) => (
-                            <VouchersTableRowDoctor key={voucher.id} voucher={voucher} />
-                        ))} */}
+                        {hoses?.map((hose) => (
+                            <HosesTableRow key={hose.id} hose={hose} />
+                        ))}
                     </TableBody>
                 </Table>
             </Box>
+            {isOpen && (
+                <AddHoseModal
+                    isOpen={isOpen}
+                    onClose={closeAddHoseModal}
+                />
+            )}
         </Stack>
     )
 }
