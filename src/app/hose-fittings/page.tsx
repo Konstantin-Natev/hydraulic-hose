@@ -1,4 +1,4 @@
-import { HoseFittings } from "@/ui/HoseFittings/HoseFittings";
+import { HoseFittings } from "@/app/hose-fittings/HoseFittings";
 
 const HoseFittingsPage = () => {
   return (

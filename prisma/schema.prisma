@@ -16,3 +16,8 @@ model Hose {
   market_price       Int
   working_pressure   Int
 }
+
+model Fittings {
+  id                 BigInt        @id @default(autoincrement())
+  model              String
+}

@@ -7,7 +7,7 @@ import { defaultFilters } from "@/interfaces/hose-fittings/hose-fittings";
 import searchOutline from "../../../public/searchOutline.svg";
 import cross from "../../../public/cross.svg";
 import { useRouter } from "next/navigation";
-import { CustomButton } from "../CustomButton/CustomButton";
+import { CustomButton } from "../../ui/CustomButton/CustomButton";
 
 export const HoseFittings = () => {
     const [filters, setFilters] = useState({ ...defaultFilters });
