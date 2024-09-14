@@ -4,13 +4,23 @@ import styles from "./hose-fittings.module.scss";
 import Image from "next/image";
 import { ChangeEvent, useState } from "react";
 import { defaultFilters } from "@/interfaces/hose-fittings/hose-fittings";
-import searchOutline from "../../../public/searchOutline.svg";
-import cross from "../../../public/cross.svg";
 import { useRouter } from "next/navigation";
 import { CustomButton } from "../../ui/CustomButton/CustomButton";
+import searchOutline from "../../../public/searchOutline.svg";
+import cross from "../../../public/cross.svg";
+import plus from "../../../public/plus.svg";
+import { AddFittingsModal } from "./AddFittingsModal";
+import { IHoseFittingsDetails } from "@/interfaces/hoses/fittings";
+import { HoseFittingsTableRow } from "./HoseFittingsTableRow";
 
-export const HoseFittings = () => {
+interface HoseFittingsProps {
+    fittings: IHoseFittingsDetails[]
+}
+
+export const HoseFittings = ({ fittings }: HoseFittingsProps) => {
     const [filters, setFilters] = useState({ ...defaultFilters });
+    const [isOpen, setIsOpen] = useState<boolean>(false);
+    
     const router = useRouter();
 
     const handleClearFilters = () => {
@@ -18,10 +28,26 @@ export const HoseFittings = () => {
         router.push("?");
     };
 
+    const openAddFittingsModal = () => {
+        setIsOpen(true);
+    };
+
+    const closeAddFittingsModal = () => {
+        setIsOpen(false);
+    };
+
     return (
         <Stack className={styles.rootContainer}>
             <Grid>
-                <Typography className={styles.pageTitle}>Накрайници</Typography>
+                <Grid className={styles.titleSection}>
+                    <Typography className={styles.pageTitle}>Накрайници</Typography>
+                    <CustomButton
+                        text={"Добави накрайник"}
+                        variant={"filled"}
+                        icon={plus}
+                        onClick={openAddFittingsModal}
+                    />
+                </Grid>
                 <Typography className={styles.pageSubtitle}>
                     Списък с накрайници въведени в системата и техните размери
                 </Typography>
@@ -85,19 +111,28 @@ export const HoseFittings = () => {
                 <Table>
                     <TableHead>
                         <TableRow className={styles.tableHeader}>
-                            <TableCell>ID</TableCell>
-                            <TableCell>Бройки</TableCell>
-                            <TableCell>Последна поръчка</TableCell>
+                            <TableCell>Чаша за вид маркуч</TableCell>
+                            <TableCell>Размер на чашата</TableCell>
+                            <TableCell>Вътрешен диаметър DN</TableCell>
+                            <TableCell>Брой</TableCell>
+                            <TableCell>Идваща цена</TableCell>
+                            <TableCell>Продаваща цена</TableCell>
                             <TableCell />
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        {/* {vouchers?.map((voucher) => (
-                            <VouchersTableRowDoctor key={voucher.id} voucher={voucher} />
-                        ))} */}
+                        {fittings?.map((hose_fittings: IHoseFittingsDetails) => (
+                            <HoseFittingsTableRow key={hose_fittings.id} hose_fittings={hose_fittings} />
+                        ))}
                     </TableBody>
                 </Table>
             </Box>
+            {isOpen && (
+                <AddFittingsModal
+                    isOpen={isOpen}
+                    onClose={closeAddFittingsModal}
+                />
+            )}
         </Stack>
     )
 }

@@ -1,0 +1,125 @@
+.id {
+  font-size: 1rem; /* 16px */
+}
+
+.issueDate {
+  font-size: 1rem; /* 16px */
+  font-weight: 600;
+}
+
+.localisation {
+  font-size: 1rem; /* 16px */
+  font-weight: 500;
+}
+
+.patient {
+  font-size: 1rem; /* 16px */
+  font-weight: 500;
+}
+
+.contact {
+  font-size: 1rem; /* 16px */
+}
+
+.buttonTableCell {
+  padding-right: 0;
+  min-width: 240px;
+}
+
+.buttonsSection {
+  flex-direction: row;
+  justify-content: flex-end;
+  gap: 0.625rem; /* 10px */
+}
+
+.hideButton {
+  @media (max-width: 1630px) {
+    display: none;
+  }
+}
+
+.voucherStatusInner {
+  display: flex;
+  flex-direction: row;
+  gap: 0.5rem; /* 8px */
+  align-items: center;
+}
+
+.commentTooltip {
+  background-color: #111d34;
+  padding: 0.75rem;
+  border-radius: 0.5rem;
+  max-width: 252px;
+}
+
+.tooltipTitle {
+  gap: 0.5rem; /* 8px */
+}
+
+.tooltipHeading {
+  color: #fff;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+
+.tooltipDescription {
+  color: #fff;
+  font-size: 0.75rem; /* 12px */
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.row {
+  td {
+    @media (max-width: 1400px) {
+      height: 3.75rem; /* 60px */
+      padding: 0;
+      padding-left: 0.625rem; /* 10px */
+      font-size: 0.875rem; /* 14px */
+    }
+  }
+}
+
+@media only screen and (max-width: 1630px) {
+  .buttonCell {
+    gap: 1rem; /* 16px */
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+  }
+}
+
+@media only screen and (max-width: 1400px) {
+  .id {
+    font-size: 0.875rem; /* 14px */
+    width: 3.125rem; /* 50px */
+  }
+
+  .issueDate {
+    font-size: 0.875rem; /* 14px */
+    width: 6.25rem; /* 100px */
+  }
+
+  .localisation {
+    font-size: 0.875rem; /* 14px */
+    width: 12.5rem; /* 200px */
+  }
+
+  .patient {
+    font-size: 0.875rem; /* 14px */
+    width: 9.375rem; /* 150px */
+  }
+
+  .contact {
+    font-size: 0.875rem; /* 14px */
+    width: 6.25rem; /* 100px */
+  }
+
+  .voucherStatus {
+    width: 12.5rem; /* 200px */
+  }
+}

@@ -2,12 +2,13 @@
 import Button from "@mui/material/Button";
 import Image from "next/image";
 import { Grid, Modal, TextField, Typography } from "@mui/material";
-import styles from "./add-hose-modal.module.scss";
+import styles from "./add-fittings-modal.module.scss";
 import * as yup from "yup";
 import { useFormik } from "formik";
 import { useRouter } from "next/navigation";
 import { CustomTextInput } from "@/ui/CustomTextInput/CustomeInputField";
 import { addHoseRecord } from "@/app/hoses/action";
+import { addHoseFittingsRecord } from "./action";
 
 interface AddFittingsModalProps {
   isOpen: boolean;
@@ -15,22 +16,24 @@ interface AddFittingsModalProps {
 }
 
 const validationSchema = yup.object({
-  model: yup.string().required("Полето е задължително"),
-  DN_diameter: yup.string().required("Полето е задължително"),
-  initial_price: yup.number().required("Полето е задължително").min(1, "Идващата цена трябва да е минимално 1лв"),
-  market_price: yup.number().required("Полето е задължително").min(1, "Цена на продаване трябва да е минимално 1лв"),
+  fittings_for_model_hose: yup.string().required("Полето е задължително"),
+  fittings_size: yup.string().required("Полето е задължително"),
+  DN_diameter: yup.number().required("Полето е задължително"),
+  initial_price: yup.number().required("Полето е задължително").min(0.01, "Идващата цена трябва да е минимално 1лв"),
+  market_price: yup.number().required("Полето е задължително").min(0.01, "Цена на продаване трябва да е минимално 1лв"),
+  count_of_fittings: yup.number().required("Полето е задължително").min(1, "Трябва да въведете брой поне 1 чаша за брой"),
 });
 
 export const AddFittingsModal = ({ isOpen, onClose }: AddFittingsModalProps) => {
   const router = useRouter();
-  const formikHose = useFormik({
+  const formikHoseFittings = useFormik({
     initialValues: {
-      model: "",
-      hose_size: "",
+      fittings_for_model_hose: "",
+      fittings_size: "",
       DN_diameter: 0,
       initial_price: 0,
       market_price: 0,
-      working_pressure: 0,
+      count_of_fittings: 0,
     },
     validateOnMount: true,
     validationSchema: validationSchema,
@@ -43,10 +46,10 @@ export const AddFittingsModal = ({ isOpen, onClose }: AddFittingsModalProps) => 
 
   const handleSubmit = async () => {
     try {
-      if (formikHose.isValid) {
-        await addHoseRecord(formikHose.values);
+      if (formikHoseFittings.isValid) {
+        await addHoseFittingsRecord(formikHoseFittings.values);
         onClose();
-        formikHose.resetForm();
+        formikHoseFittings.resetForm();
       }
     } catch (error) {
       console.error("Error submitting fittings record:", error);
@@ -60,70 +63,70 @@ export const AddFittingsModal = ({ isOpen, onClose }: AddFittingsModalProps) => 
           <Image src="/cross.svg" alt="Cancel" width={20} height={20} />
         </Grid>
         <Typography className={styles.modalTitle}>Добавяне на Накрайник</Typography>
-        <form onSubmit={formikHose.handleSubmit}>
+        <form onSubmit={formikHoseFittings.handleSubmit}>
           <Grid container justifyContent={"space-between"} className={styles.modalInnerContainer}>
             <Grid item width={"48%"}>
               <CustomTextInput
-                label="Модел *"
+                label="Чаша за вид маркуч *"
                 labelStyle={styles.modalLabel}
                 fieldStyle={styles.modalTextField}
-                value={formikHose.values.model}
+                value={formikHoseFittings.values.fittings_for_model_hose}
                 onChange={(e) => {
-                  formikHose.handleChange(e);
+                  formikHoseFittings.handleChange(e);
                 }}
                 error={
-                  formikHose.validateOnChange &&
-                  formikHose.touched.model &&
-                  Boolean(formikHose.errors.model)
+                  formikHoseFittings.validateOnChange &&
+                  formikHoseFittings.touched.fittings_for_model_hose &&
+                  Boolean(formikHoseFittings.errors.fittings_for_model_hose)
                 }
                 helperText={
-                  formikHose.validateOnChange &&
-                  formikHose.touched.model &&
-                  formikHose.errors.model
+                  formikHoseFittings.validateOnChange &&
+                  formikHoseFittings.touched.fittings_for_model_hose &&
+                  formikHoseFittings.errors.fittings_for_model_hose
                 }
-                name={"model"}
-                placeholder={"Въведете модел"}
+                name={"fittings_for_model_hose"}
+                placeholder={"Въведете чаша за вид маркуч"}
                 type={"text"}
               />
-              <CustomTextInput
-                label="Размер"
+               <CustomTextInput
+                label="Размер на чашата *"
                 labelStyle={styles.modalLabel}
                 fieldStyle={styles.modalTextField}
-                value={formikHose.values.hose_size}
+                value={formikHoseFittings.values.fittings_size}
                 onChange={(e) => {
-                  formikHose.handleChange(e);
+                  formikHoseFittings.handleChange(e);
                 }}
                 error={
-                  formikHose.validateOnChange &&
-                  formikHose.touched.hose_size &&
-                  Boolean(formikHose.errors.hose_size)
+                  formikHoseFittings.validateOnChange &&
+                  formikHoseFittings.touched.fittings_size &&
+                  Boolean(formikHoseFittings.errors.fittings_size)
                 }
                 helperText={
-                  formikHose.validateOnChange &&
-                  formikHose.touched.hose_size &&
-                  formikHose.errors.hose_size
+                  formikHoseFittings.validateOnChange &&
+                  formikHoseFittings.touched.fittings_size &&
+                  formikHoseFittings.errors.fittings_size
                 }
-                name={"hose_size"}
-                placeholder={"Въведете размер"}
+                name={"fittings_size"}
+                placeholder={"Въведете размер на чашата"}
                 type={"text"}
               />
               <CustomTextInput
                 label="Вътрешен диаметър DN *"
                 labelStyle={styles.modalLabel}
                 fieldStyle={styles.modalTextField}
-                value={formikHose.values.DN_diameter}
+                value={formikHoseFittings.values.DN_diameter}
                 onChange={(e) => {
-                  formikHose.handleChange(e);
+                  formikHoseFittings.handleChange(e);
                 }}
                 error={
-                  formikHose.validateOnChange &&
-                  formikHose.touched.DN_diameter &&
-                  Boolean(formikHose.errors.DN_diameter)
+                  formikHoseFittings.validateOnChange &&
+                  formikHoseFittings.touched.DN_diameter &&
+                  Boolean(formikHoseFittings.errors.DN_diameter)
                 }
                 helperText={
-                  formikHose.validateOnChange &&
-                  formikHose.touched.DN_diameter &&
-                  formikHose.errors.DN_diameter
+                  formikHoseFittings.validateOnChange &&
+                  formikHoseFittings.touched.DN_diameter &&
+                  formikHoseFittings.errors.DN_diameter
                 }
                 name={"DN_diameter"}
                 placeholder={"Въведете вътрешен диаметър DN"}
@@ -132,44 +135,44 @@ export const AddFittingsModal = ({ isOpen, onClose }: AddFittingsModalProps) => 
             </Grid>
             <Grid item width={"48%"}>
               <CustomTextInput
-                label="Работно налягане"
+                label="Брой *"
                 labelStyle={styles.modalLabel}
                 fieldStyle={styles.modalTextField}
-                value={formikHose.values.working_pressure}
+                value={formikHoseFittings.values.count_of_fittings}
                 onChange={(e) => {
-                  formikHose.handleChange(e);
+                  formikHoseFittings.handleChange(e);
                 }}
                 error={
-                  formikHose.validateOnChange &&
-                  formikHose.touched.working_pressure &&
-                  Boolean(formikHose.errors.working_pressure)
+                  formikHoseFittings.validateOnChange &&
+                  formikHoseFittings.touched.count_of_fittings &&
+                  Boolean(formikHoseFittings.errors.count_of_fittings)
                 }
                 helperText={
-                  formikHose.validateOnChange &&
-                  formikHose.touched.working_pressure &&
-                  formikHose.errors.working_pressure
+                  formikHoseFittings.validateOnChange &&
+                  formikHoseFittings.touched.count_of_fittings &&
+                  formikHoseFittings.errors.count_of_fittings
                 }
-                name={"working_pressure"}
-                placeholder={"Въведете работно налягане"}
+                name={"count_of_fittings"}
+                placeholder={"Въведете брой"}
                 type={"text"}
               />
               <CustomTextInput
                 label="Идваща цена *"
                 labelStyle={styles.modalLabel}
                 fieldStyle={styles.modalTextField}
-                value={formikHose.values.initial_price}
+                value={formikHoseFittings.values.initial_price}
                 onChange={(e) => {
-                  formikHose.handleChange(e);
+                  formikHoseFittings.handleChange(e);
                 }}
                 error={
-                  formikHose.validateOnChange &&
-                  formikHose.touched.initial_price &&
-                  Boolean(formikHose.errors.initial_price)
+                  formikHoseFittings.validateOnChange &&
+                  formikHoseFittings.touched.initial_price &&
+                  Boolean(formikHoseFittings.errors.initial_price)
                 }
                 helperText={
-                  formikHose.validateOnChange &&
-                  formikHose.touched.initial_price &&
-                  formikHose.errors.initial_price
+                  formikHoseFittings.validateOnChange &&
+                  formikHoseFittings.touched.initial_price &&
+                  formikHoseFittings.errors.initial_price
                 }
                 name={"initial_price"}
                 placeholder={"Въведете идваща цена"}
@@ -179,19 +182,19 @@ export const AddFittingsModal = ({ isOpen, onClose }: AddFittingsModalProps) => 
                 label="Продаваша цена *"
                 labelStyle={styles.modalLabel}
                 fieldStyle={styles.modalTextField}
-                value={formikHose.values.market_price}
+                value={formikHoseFittings.values.market_price}
                 onChange={(e) => {
-                  formikHose.handleChange(e);
+                  formikHoseFittings.handleChange(e);
                 }}
                 error={
-                  formikHose.validateOnChange &&
-                  formikHose.touched.market_price &&
-                  Boolean(formikHose.errors.market_price)
+                  formikHoseFittings.validateOnChange &&
+                  formikHoseFittings.touched.market_price &&
+                  Boolean(formikHoseFittings.errors.market_price)
                 }
                 helperText={
-                  formikHose.validateOnChange &&
-                  formikHose.touched.market_price &&
-                  formikHose.errors.market_price
+                  formikHoseFittings.validateOnChange &&
+                  formikHoseFittings.touched.market_price &&
+                  formikHoseFittings.errors.market_price
                 }
                 name={"market_price"}
                 placeholder={"Въведете продаваша цена"}

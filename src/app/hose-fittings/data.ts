@@ -1,9 +1,9 @@
 import { prisma } from "@/lib/prisma";
 
-export const getAllHoses = async () => {
+export const getAllHoseFittings = async () => {
     try {
-        return await prisma.hose.findMany();
+        return await prisma.fittings.findMany();
     } catch (err) {
-       console.error("Error executing getAllHoses:", err);
+       console.error("Error executing getAllHoseFittings:", err);
     }
 }

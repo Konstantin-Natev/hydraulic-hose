@@ -17,8 +17,8 @@ interface AddHoseModalProps {
 const validationSchema = yup.object({
   model: yup.string().required("Полето е задължително"),
   DN_diameter: yup.string().required("Полето е задължително"),
-  initial_price: yup.number().required("Полето е задължително").min(1, "Идващата цена трябва да е минимално 1лв"),
-  market_price: yup.number().required("Полето е задължително").min(1, "Цена на продаване трябва да е минимално 1лв"),
+  initial_price: yup.number().required("Полето е задължително").min(0.01, "Идващата цена трябва да е минимално 1лв"),
+  market_price: yup.number().required("Полето е задължително").min(0.01, "Цена на продаване трябва да е минимално 1лв"),
 });
 
 export const AddHoseModal = ({ isOpen, onClose }: AddHoseModalProps) => {

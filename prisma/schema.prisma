@@ -8,16 +8,23 @@ datasource db {
 }
 
 model Hose {
-  id                 BigInt        @id @default(autoincrement())
-  model              String
-  hose_size          String
-  DN_diameter        Int
-  initial_price      Int
-  market_price       Int
-  working_pressure   Int
+  id               BigInt     @id @default(autoincrement())
+  model            String
+  hose_size        String
+  DN_diameter      Float
+  initial_price    Float
+  market_price     Float
+  working_pressure Int
+  fittings         Fittings[]   @relation("HoseFittings")
 }
 
 model Fittings {
-  id                 BigInt        @id @default(autoincrement())
-  model              String
+  id                      BigInt @id @default(autoincrement())
+  fittings_for_model_hose String
+  DN_diameter             Float
+  initial_price           Float
+  market_price            Float
+  count_of_fittings       Int
+  fittings_size           String?
+  hose                    Hose[]   @relation("HoseFittings")
 }

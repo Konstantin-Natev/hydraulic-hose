@@ -1,22 +1,43 @@
 "use server";
-import { IHoseDetails } from "@/interfaces/hoses/hoses";
+import { IHoseFittingsDetails } from "@/interfaces/hoses/fittings";
 import { prisma } from "@/lib/prisma";
 import { revalidatePath } from "next/cache";
 
-export async function addHoseRecord (hoseDetails: IHoseDetails) {
+export async function addHoseFittingsRecord (hoseFittingsDetails: IHoseFittingsDetails) {
   try {
-    const newHose = await prisma.hose.create({ 
-      data: { 
-        model: hoseDetails.model,
-        hose_size: hoseDetails.hose_size,
-        DN_diameter: Number(hoseDetails.DN_diameter),
-        initial_price: Number(hoseDetails.initial_price),
-        market_price: Number(hoseDetails.market_price),
-        working_pressure: Number(hoseDetails.working_pressure),
-      } 
+    const data = {
+      fittings_for_model_hose: hoseFittingsDetails.fittings_for_model_hose,
+      fittings_size: hoseFittingsDetails.fittings_size!,
+      DN_diameter: Number(hoseFittingsDetails.DN_diameter),
+      initial_price: Number(hoseFittingsDetails.initial_price),
+      market_price: Number(hoseFittingsDetails.market_price),
+      count_of_fittings: Number(hoseFittingsDetails.count_of_fittings),
+    }
+
+    const existingHose = await prisma.hose.findFirst({
+      where: {
+        hose_size: hoseFittingsDetails.fittings_size
+      }
     });
 
-    revalidatePath("/hoses");
+    const newFitting = await prisma.fittings.create({ 
+      data
+    });
+
+    if (existingHose) {
+      await prisma.hose.update({
+        where: {
+          id: existingHose.id
+        },
+        data: {
+          fittings: {
+            connect: newFitting
+          }
+        }
+      })
+    }
+
+    revalidatePath("/hose-fittings");
   } catch (err) {
     console.error("Error executing addHoseRecord:", err);
   }

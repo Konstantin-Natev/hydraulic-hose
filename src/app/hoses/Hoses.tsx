@@ -4,13 +4,13 @@ import styles from "./hoses.module.scss";
 import Image from "next/image";
 import { ChangeEvent, useState } from "react";
 import { defaultFilters, IHoseDetails } from "@/interfaces/hoses/hoses";
-import searchOutline from "../../../public/searchOutline.svg";
-import cross from "../../../public/cross.svg";
-import plus from "../../../public/plus.svg";
 import { useRouter } from "next/navigation";
 import { CustomButton } from "../../ui/CustomButton/CustomButton";
 import { AddHoseModal } from "./AddHoseModal";
 import { HosesTableRow } from "./HosesTableRow";
+import searchOutline from "../../../public/searchOutline.svg";
+import cross from "../../../public/cross.svg";
+import plus from "../../../public/plus.svg";
 
 interface HosesProps {
     hoses: IHoseDetails[]
