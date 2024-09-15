@@ -1,8 +1,12 @@
-import { HoseFittings } from "@/ui/HoseFittings/HoseFittings";
+import { HoseFittings } from "@/app/hose-fittings/HoseFittings";
+import { getAllHoseFittings } from "./data";
+import { IHoseFittingsDetails } from "@/interfaces/hoses/fittings";
 
-const HoseFittingsPage = () => {
+const HoseFittingsPage = async () => {
+  const fittings = await getAllHoseFittings();
+
   return (
-    <HoseFittings />
+    <HoseFittings fittings={fittings as IHoseFittingsDetails[]}/>
   );
 };
 
